@@ -30,45 +30,7 @@ public class Start {
      */
 	public static void main(String[] args) {
 		Engine rm = new Engine();
-		rm.losgehts();
-            
-            
-//            System.out.println("Byte kleinster negativer:" + (-Byte.MIN_VALUE));
-//            System.out.println("Byte größter negativer:" + -Byte.MAX_VALUE);
-//            System.out.println("Byte kleinster positiver:" + Byte.MIN_VALUE);
-//            System.out.println("Byte größter positiver:" + Byte.MAX_VALUE);
-//            System.out.println("");
-//            System.out.println("Short kleinster negativer:" + -Short.MIN_VALUE);
-//            System.out.println("Short größter negativer:" + -Short.MAX_VALUE);
-//            System.out.println("Short kleinster positiver:" + Short.MIN_VALUE);
-//            System.out.println("Short größter positiver:" + Short.MAX_VALUE);
-//            System.out.println("");
-//            System.out.println("Integer kleinster negativer:" + -Integer.MIN_VALUE);
-//            System.out.println("Integer größter negativer:" + -Integer.MAX_VALUE);
-//            System.out.println("Integer kleinster positiver:" + Integer.MIN_VALUE);
-//            System.out.println("Integer größter positiver:" + Integer.MAX_VALUE);
-//            System.out.println("");
-//            System.out.println("Long kleinster negativer:" + -Long.MIN_VALUE);
-//            System.out.println("Long größter negativer:" + -Long.MAX_VALUE);
-//            System.out.println("Long kleinster positiver:" + Long.MIN_VALUE);
-//            System.out.println("Long größter positiver:" + Long.MAX_VALUE);
-//            System.out.println("");
-//            System.out.println("Char kleinster negativer:" + -Character.MIN_VALUE);
-//            System.out.println("Char größter negativer:" + -Character.MAX_VALUE);
-//            System.out.println("Char kleinster positiver:" + Character.MIN_VALUE);
-//            System.out.println("Char größter positiver:" + Character.MAX_VALUE);
-//            System.out.println("");
-//            System.out.println("Float kleinster negativer:" + -Float.MIN_VALUE);
-//            System.out.println("Float größter negativer:" + -Float.MAX_VALUE);
-//            System.out.println("Float kleinster positiver:" + Float.MIN_VALUE);
-//            System.out.println("Float größter positiver:" + Float.MAX_VALUE);
-//            System.out.println("");
-//            System.out.println("Double kleinster negativer:" + -Double.MIN_VALUE);
-//            System.out.println("Double größter negativer:" + -Double.MAX_VALUE);
-//            System.out.println("Double kleinster positiver:" + Double.MIN_VALUE);
-//            System.out.println("Double größter positiver:" + Double.MAX_VALUE);
-            
-            
+		rm.losgehts();            
             
 	}// end of main
 }// end of class
