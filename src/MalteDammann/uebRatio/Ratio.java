@@ -11,7 +11,7 @@ package MalteDammann.uebRatio;
  * Modul: Preogrammierung 1
  * Dateiname: Ratio.Java
  *
- * @version Produkt: NetBeans IDE 8.0.1, Java: 1.8.0_20; Java HotSpot(TM) 64-Bit, Server VM 25.20-b23
+ * @version Produkt: NetBeans IDE 8.0.2, Java: 1.8.0_20; Java HotSpot(TM) 64-Bit, Server VM 25.20-b23
  *
  * @since 2014-11-29
  *
@@ -30,12 +30,10 @@ public class Ratio implements IRatio {
     public Ratio() {
         this.zaehler = 0;
         this.nenner = 1;
-    }
+    }// end of Ratio
 
     /**
-     * parametrisierter Konstruktor
-     *
-     * Parameter:
+     * Parametrisierter Konstruktor
      *
      * @param zaehler (int): Ganzzahliger Zähler
      * @param nenner  (int): Ganzzahliger Nenner
@@ -43,7 +41,7 @@ public class Ratio implements IRatio {
     public Ratio(int zaehler, int nenner) {
         this.zaehler = zaehler;
         this.nenner = nenner;
-    }
+    }// end of Ratio
 
     /**
      * Getter-Methoder für den Zähler
@@ -52,7 +50,7 @@ public class Ratio implements IRatio {
      */
     public int getZaehler() {
         return zaehler;
-    }
+    }// end of getZaehler
 
     /**
      * Getter-Methoder für den Nenner
@@ -61,7 +59,7 @@ public class Ratio implements IRatio {
      */
     public int getNenner() {
         return nenner;
-    }
+    }// end of getNenner
 
     /**
      * Setter-Methode für den Zähler
@@ -70,7 +68,7 @@ public class Ratio implements IRatio {
      */
     public void setZaehler(int zaehler) {
         this.zaehler = zaehler;
-    }
+    }// end of setZaehler
 
     /**
      * Setter-Methode für den Nenner
@@ -79,7 +77,7 @@ public class Ratio implements IRatio {
      */
     public void setNenner(int nenner) {
         this.nenner = nenner;
-    }
+    }// end of setNenner
 
     // Durch das Interface impementierte Methoden:
     /**
@@ -159,7 +157,7 @@ public class Ratio implements IRatio {
      *
      * @return Ratio
      *
-     * @throws ArithmeticException wenn durch 0 geteilt wird
+     * @throws ArithmeticException wenn mathematischer Fehler auftritt
      *
      * Formel: z/n : x/y = (z * y ) / (n * x )
      */

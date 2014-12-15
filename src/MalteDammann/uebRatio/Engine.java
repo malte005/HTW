@@ -14,14 +14,14 @@ import java.util.Scanner;
  * Modul: Preogrammierung 1
  * Dateiname: Engine.Java
  *
- * @version Produkt: NetBeans IDE 8.0.1, Java: 1.8.0_20; Java HotSpot(TM) 64-Bit, Server VM 25.20-b23
+ * @version Produkt: NetBeans IDE 8.0.2, Java: 1.8.0_20; Java HotSpot(TM) 64-Bit, Server VM 25.20-b23
  *
  * @since 2014-12-12
  *
  */
 public class Engine {
 
-    // Attribute
+    // Klassenvariablen
     private static Ratio ratio1, ratio2, ergebnis;
     private static final ArrayList<String> OPERATOREN = new ArrayList<>();
     private static final ArrayList<String> RATIO_ZAHLEN = new ArrayList<>();
@@ -36,9 +36,9 @@ public class Engine {
         // Attribute
         Scanner scanner = new Scanner(System.in);
         String pattern = "^(\\+|-)?[0-9]*[//][0-9]*";   // Eingabepattern für: (+/-)Zähler / Nenner
-        String stringRatio1 = "";
-        String stringRatio2 = "";
-        String opperator = "";
+        String stringRatio1;
+        String stringRatio2;
+        String opperator;
         boolean eingabeFehler;
         boolean weiter;
         String[] splitResult;
@@ -49,11 +49,12 @@ public class Engine {
         do {
             System.out.println("Bitte rationale Zahl in der Form '(+-)z/n' eingeben:");
 
-            // Schleife für Eingabefehler 1. Ratio
+            // Schleife für Eingabefehler des 1. Ratio-Strings
             do {
+                // Benutzereingabe
                 stringRatio1 = scanner.next();
                 
-                // Check Division durch 0
+                // Check Division durch 0 der 1. rationalen Zahl
                 splitResult = stringRatio1.split("/");
                 int n = Integer.parseInt(splitResult[1]);
 
@@ -71,11 +72,11 @@ public class Engine {
 
             System.out.println("Danke! Jetzt bitte die zweite rationale Zahl in der gleich Form eingben '(+-)z/n' :");
 
-            // Schleife für Eingabefehler 2. Ratio
+            // Schleife für Eingabefehler des 2. Ratio-Strings
             do {
                 stringRatio2 = scanner.next();
 
-                // Check Division durch 0
+                // Check Division durch 0 der 2. rationalen Zahl
                 splitResult = stringRatio2.split("/");
                 int n = Integer.parseInt(splitResult[1]);
 
@@ -110,7 +111,7 @@ public class Engine {
 
             } while (eingabeFehler);
 
-            // Abspeichern der Objekte und des Operatoren
+            // Abspeichern der Ratio-Objekte und des Operators im Speicher
             saveRatioZahl(ratio1);
             saveRatioZahl(ratio2);
             saveOperator(opperator);
@@ -118,7 +119,7 @@ public class Engine {
             // Rechenoperation wird in der aufgerufenen Methode - rechen() - aufgerufen
             rechnen(ratio1, ratio2, opperator);
 
-            // Abspeichern des Ergebnis-Objekts
+            // Abspeichern des Ergebnis-Objekts im Speicher
             saveRatioZahl(ergebnis);
 
             // Ausgabe Ergebnis
@@ -131,9 +132,10 @@ public class Engine {
 
         } while (weiter);
 
+        // Ausgabe der Rechenergebnisse
         ergebnisAusgabe();
 
-    }
+    }// end of losgehts
 
     /**
      * ergebnisAusgabe-Methode:
@@ -142,13 +144,13 @@ public class Engine {
      */
     private void ergebnisAusgabe() {
 
-        int anzahl = RATIO_ZAHLEN.size() / 3;
+        int anzahlRechnungen = RATIO_ZAHLEN.size() / 3;
         int temp = 0;
 
         System.out.println("\n---- Berechnungen ----");
 
         // Speicher auslesen und in der Schleife ausgeben
-        for (int i = 1; i <= anzahl; i++) {
+        for (int i = 1; i <= anzahlRechnungen; i++) {
             System.out.println("(" + restore(temp) + ") " + restoreOpperator(temp / 3) + " (" + restore(temp + 1) + ") = " + restore(temp + 2));
             temp += 3;
         }
@@ -156,7 +158,7 @@ public class Engine {
         // Speicher wieder leeren
         clearMemory();
 
-    }
+    }// end of ergebnisAusgabe
 
     /**
      * rechne-Methode:
@@ -182,7 +184,7 @@ public class Engine {
                 ergebnis = ratio1.dividiere(ratio2);
                 break;
         }
-    }
+    }// end of rechnen
 
     /**
      * saveRatioZahl-Methode:
@@ -193,7 +195,7 @@ public class Engine {
     public void saveRatioZahl(Ratio ratio) {
 
         RATIO_ZAHLEN.add(String.valueOf(ratio));
-    }
+    }// end of saveRatioZahl
 
     /**
      * saveOperator-Methode:
@@ -204,7 +206,7 @@ public class Engine {
     public void saveOperator(String op) {
 
         OPERATOREN.add(op);
-    }
+    }// end of saveOperator
 
     /**
      * restore-Methode:
@@ -232,7 +234,7 @@ public class Engine {
 
         String value = RATIO_ZAHLEN.get(index);
         return value;
-    }
+    }// end of restore
 
     /**
      * string2ratio-Methode:
@@ -258,11 +260,11 @@ public class Engine {
         Ratio ratio = new Ratio(z, n);
 
         return ratio;
-    }
+    }// end of string2ratio
 
     /**
      * clearMemory-Methode:
-     * leer das Array mit den Rechenoptionen
+     * leer das Array mit den Rechenoptionen und das mit den Ratio-Objekten
      */
     private void clearMemory() {
 
@@ -270,6 +272,6 @@ public class Engine {
         OPERATOREN.clear();
         
         System.out.println("\nSpeicher bereinigt.\n");
-    }
+    }// end of clearMemory
 
-}
+}// end of class
