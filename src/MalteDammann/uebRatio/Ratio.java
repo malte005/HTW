@@ -2,18 +2,20 @@ package MalteDammann.uebRatio;
 
 /**
  * Beschreibung:
- * Ratio-Klasse welche das Interface "IRatio" implementiert
+ * Ratio-Klasse welche das Interface "IRatio" implementiert und als Rechenobjekt
+ * des Progamms dient. Stellt eine rationale Zahl mit Nenner und Zähler dar.
  *
  * @author Malte Dammann
  * E-Mail: s0549309@htw-berlin.de
  * Bearbeitungszeitraum: 29.11.14 - 18.01.2015
  *
- * Modul: Preogrammierung 1
- * Dateiname: Ratio.Java
+ * Modul: Programmierung 1
+ * 
+ * Dateiname: Ratio.java
+ * IDE: NetBeans IDE 8.0.2
+ * Java: 1.8.0_20; Java HotSpot(TM) 64-Bit
  *
- * @version Produkt: NetBeans IDE 8.0.2, Java: 1.8.0_20; Java HotSpot(TM) 64-Bit, Server VM 25.20-b23
- *
- * @since 2014-11-29
+ * @since 2014-11-30
  *
  */
 public class Ratio implements IRatio {
@@ -22,7 +24,6 @@ public class Ratio implements IRatio {
     private int zaehler;
     private int nenner;
 
-    
     /**
      * Default Konstruktor:
      * initialisiert Zähler auf 0 und Nenner auf 1
@@ -76,6 +77,9 @@ public class Ratio implements IRatio {
      * @param nenner (int): Ganzzahliger Nenner
      */
     public void setNenner(int nenner) {
+        if (nenner == 0){
+            throw new ArithmeticException("Division durch '0' nicht erlaubt.");
+        }
         this.nenner = nenner;
     }// end of setNenner
 
@@ -84,9 +88,9 @@ public class Ratio implements IRatio {
      * addire-Methode:
      * Methode zum Addieren einer rationalen Zahl.
      *
-     * @param zahl2 Zahl vom Objekt Ratio mit der gerechnet wird
+     * @param zahl2 (Ratio): Zahl vom Objekt Ratio mit der gerechnet wird
      *
-     * @return Ratio
+     * @return result (Ratio)
      *
      * Formel: z/n + x/y = (z * y + n * x ) / (n * y )
      */
@@ -107,20 +111,20 @@ public class Ratio implements IRatio {
      * subtrahiere-Methode:
      * Methode zum Subtrahieren einer rationalen Zahl.
      *
-     * @param zahl2 Zahl vom Objekt Ratio mit der gerechnet wird
+     * @param zahl2 (Ratio): Zahl vom Objekt Ratio mit der gerechnet wird
      *
-     * @return Ratio
+     * @return result (Ratio)
      *
      * Fromel: z/n - x/y = (z * y - n * x ) / (n * y )
      */
     @Override
     public Ratio subtrahiere(Ratio zahl2) {
-        
+
         zaehler = (this.zaehler * zahl2.getNenner() - this.nenner * zahl2.getZaehler());
         nenner = (this.nenner * zahl2.getNenner());
-        
+
         kuerze();
-        
+
         Ratio result = new Ratio(zaehler, nenner);
         return result;
 
@@ -128,11 +132,11 @@ public class Ratio implements IRatio {
 
     /**
      * multipliziere-Methode:
-     * Methode zum Multiplizieren einer rationalen Zahl.
+     * Methode zum Multiplizieren mit einer rationalen Zahl.
      *
-     * @param zahl2 Zahl vom Objekt Ratio mit der gerechnet wird
+     * @param zahl2 (Ratio): Zahl vom Objekt Ratio mit der gerechnet wird
      *
-     * @return Ratio
+     * @return result (Ratio): Ergebnis
      *
      * Formel: z/n * x/y = (z * x ) / (n * y )
      */
@@ -151,11 +155,11 @@ public class Ratio implements IRatio {
 
     /**
      * dividiere-Methode:
-     * Methode zum Dividieren einer rationalen Zahl.
+     * Methode zum Dividieren mit einer rationalen Zahl.
      *
-     * @param zahl2 Zahl vom Objekt Ratio mit der gerechnet wird
+     * @param zahl2 (Ratio): Zahl vom Objekt Ratio mit der gerechnet wird
      *
-     * @return Ratio
+     * @return result (Ratio): Ergebnis
      *
      * @throws ArithmeticException wenn mathematischer Fehler auftritt
      *
@@ -178,35 +182,41 @@ public class Ratio implements IRatio {
      * kuerze-Methode:
      * Methode zum Kuerzen einer rationalen Zahl.
      *
-     * @return Ratio
+     * @return this (Ratio): Ergebnis
      *
      */
     @Override
-    public Ratio kuerze() {
+    public Ratio kuerze() throws ArithmeticException {
+
         int i,
                 n = Math.abs(nenner),
                 z = Math.abs(zaehler);
 
-        while (z > 0) {
-            if (z < n) {
-                i = n;
-                n = z;
-                z = i;
+        if (nenner == 0) {
+            throw new ArithmeticException("Durch '0' teilen ist nicht erlaubt... \n");
+        } else {
+            while (z > 0) {
+                if (z < n) {
+                    i = n;
+                    n = z;
+                    z = i;
+                }
+                z = z - n;
             }
-            z = z - n;
+
+            nenner = nenner / n;
+            zaehler = zaehler / n;
         }
-
-        nenner = nenner / n;
-        zaehler = zaehler / n;
-
+        
         return this;
+        
     } // end of kuerze
 
     /**
      * equals-Methode:
      * Methode zum Vergleichen zweier Objekte.
      *
-     * @param obj Zu vergleichendes Objekt
+     * @param obj (Object): Zu vergleichendes Objekt
      *
      * @return boolean: true oder false, ob das Objekt identisch ist oder nicht
      *
@@ -227,12 +237,21 @@ public class Ratio implements IRatio {
                 return true;
             }
         }
+        
         return false;
+        
     } // end of equals
 
+    /**
+     * toString-Methode:
+     * Methode zum Umwandeln des Objekts in einen String.
+     *
+     * @return String: in der Form "z/n"
+     *
+     */
     @Override
     public String toString() {
-        return "" + zaehler + "/" + nenner;
+        return zaehler + "/" + nenner;
     } // end of toString
 
 } // end of class
